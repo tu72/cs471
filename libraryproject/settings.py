@@ -9,11 +9,13 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATE_DIR = os.path.join(BASE_DIR, "apps" + os.sep + "templates")
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.bookmodule',
-    'apps.usermodule'
+    'apps.usermodule',
 ]
 
 MIDDLEWARE = [
@@ -56,8 +58,8 @@ ROOT_URLCONF = 'libraryproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [TEMPLATE_DIR],
+        'APP_DIRS': False,  # Changed to False to only use global templates
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
