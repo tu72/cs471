@@ -1,0 +1,23 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %}Book Details{% endblock title %}
+
+{% block content %}
+    <div class="book-detail">
+        <a href="{% url books.list_books' %}" class="back-link">Go Back</a>
+        
+        <h1>Details of Book1</h1>
+        <h2>Internet & World Wide Web How to Program</h2>
+        <h2>Author: author name</h2>
+        
+        <div class="book-description">
+            <p><strong>Internet & World Wide Web How to Program, 5/e</strong> provides a
+            clear, simple, engaging and entertaining introduction to Internet and web
+            programming. It's appropriate for both introductory and intermediate-level client-side and server-side programming courses.</p>
+        </div>
+        
+        <div class="book-image">
+            <img src="{% static 'book1.jpg' %}" alt="Book1 img desc" width="200" height="200">
+        </div>
+    </div>
+{% endblock content %}
