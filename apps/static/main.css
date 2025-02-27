@@ -1,0 +1,132 @@
+.link-block {
+    padding: 15px;
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-bottom: 1px;
+}
+
+#first-link {
+    background-color: #08751e;
+}
+
+#second-link {
+    background-color: #616161;
+}
+
+#third-link {
+    background-color: #000;
+}
+
+.link-block a {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+
+#first-link a {
+    color: #000;
+}
+
+#second-link a, #third-link a {
+    color: #fff;
+}
+
+.link-block a:visited {
+    font-style: italic;
+}
+
+.link-block a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.link-block a:active {
+    color: #ff0000;
+}
+#h1-text-formatting {
+    background-color: #2fad48;
+    color: #a30b2a;
+}
+#title-listing {
+    color: #fff;
+    background-color:#616161
+}
+
+.tables-container {
+    max-width: 800px;
+    margin: 30px auto;
+    font-family: Arial, sans-serif;
+}
+
+.table-section {
+    margin-bottom: 30px;
+}
+
+.table-title {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: normal;
+}
+
+/* Fruit Table Styles */
+.fruit-table {
+    width: 50%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.fruit-table th, .fruit-table td {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.fruit-table th {
+    background-color: #f2f2f2;
+}
+
+.table-container {
+    font-family: Arial, sans-serif;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: white;
+    height: 50px; /* 1/3 of image height */
+}
+
+.title-cell {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 1px solid black;
+    height: 100px; /* 2/3 of image height */
+}
+
+.desert-image {
+    width: 200px;
+    height: 150px; /* Total height = 150px */
+    object-fit: cover;
+    display: block;
+}
+
+.image-cell {
+    padding: 0;
+    width: 200px;
+    vertical-align: top;
+}

@@ -9,11 +9,12 @@
  <link rel="icon" href="{% static 'qu-logo.png' %}">
  <meta charset="UTF-8">
  <link rel="stylesheet" href="{% static 'styles.css' %}"> <!-- include css file -->
+ <link rel="stylesheet" href="{% static 'main.css' %}"> <!-- include css file -->
  {% block stylesheets %}{% endblock stylesheets %}
 </head>
 <body>
 
- {% include "includes/header.html" %}
+ 
  {% block content %} {% endblock content %}
  {% include "includes/footer.html" %}
 </body>
