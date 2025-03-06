@@ -9,5 +9,6 @@ urlpatterns = [
  path('html5/text/formatting', views.text_formatting, name='text_formatting'),
  path('html5/listing',views.listing, name="listing"),
  path('html5/tables', views.html5_tables, name='html5_tables'),
+ path('search', views.Search, name='Search'),
 ]
 
