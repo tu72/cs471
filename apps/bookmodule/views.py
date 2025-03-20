@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from .models import Book
+from .models import student
+from .models import Address
 from django.http import HttpResponse
-
+from django.db.models import Q
+from django.db.models import Count, Sum, Avg, Max, Min
 def index(request):
  return render(request, "bookmodule/index.html")
 def list_books(request):
@@ -54,3 +57,41 @@ def complex_query(request):
         return render(request, 'bookmodule/bookList.html', {'books':mybooks})
     else:
         return render(request, 'bookmodule/index.html')
+    
+def task1(request):
+    mybooks=Book.objects.filter(Q(price__lte='80')) # <- multiple objects
+    return render(request, 'bookmodule/bookList.html', {'books':mybooks})
+
+def task2(request):
+    mybooks = Book.objects.filter(Q(edition__gt=3) & (Q(title__icontains="qu") | Q(author__icontains="qu"))) # <- multiple objects
+    return render(request, 'bookmodule/bookList.html', {'books':mybooks})
+
+def task3(request):
+    mybooks = Book.objects.filter(~Q(edition__gt=3) & (~Q(title__icontains="qu") | ~Q(author__icontains="qu"))) # <- multiple objects
+    return render(request, 'bookmodule/bookList.html', {'books':mybooks})
+
+def task4(request):
+    mybooks = Book.objects.all().order_by('title')
+    return render(request, 'bookmodule/bookList.html', {'books':mybooks})
+
+def task5(request):
+    booksnum = Book.objects.count()
+    tprice = Book.objects.aggregate(Sum("price"))
+    aprice = Book.objects.aggregate(Avg("price", default=0))
+    maxprice = Book.objects.aggregate(Max("price"))
+    minprice = Book.objects.aggregate(Min("price"))
+    mybooks = Book.objects.all().order_by('title')
+    return render(request, 'bookmodule/task5.html', {'total':booksnum,'tprice':tprice,'aprice':aprice,'maxprice':maxprice,'minprice':minprice})
+
+
+def task6(request):
+    cities = Address.objects.annotate(
+        student_count=Count('student')
+    ).values('city', 'student_count')
+    
+    context = {
+        'cities': cities
+    }
+
+    return render(request, 'bookmodule/task6.html', context)
+
