@@ -10,5 +10,7 @@ urlpatterns = [
  path('html5/listing',views.listing, name="listing"),
  path('html5/tables', views.html5_tables, name='html5_tables'),
  path('search', views.Search, name='Search'),
+ path('simple/query', views.simple_query, name='simple_query'),
+ path('complex/query', views.complex_query, name='complex_query'),
 ]
 

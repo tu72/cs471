@@ -11,17 +11,11 @@
     <h1>Book Collection</h1>
     
 
-    {% if books %}
-        <ul>
-            {% for book in books %}
-                <li>
-                    {{ book.title }}  {{ book.author }}  {{ book.id }}
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No book</p>
-    {% endif %}
+    {% for obj in books %}
+    ID: {{obj.id}}, Title: {{obj.title}}
+    <hr>
+    {% endfor %}
+
 </body>
 </html>
 {% endblock %}
