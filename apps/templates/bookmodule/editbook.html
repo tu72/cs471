@@ -1,0 +1,27 @@
+{% extends "layouts/base.html" %} 
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>edit</title>
+</head>
+
+<body>
+    <h1>edit book</h1>
+    
+    <form class="editForm" method="post" action="">
+        {% csrf_token %}
+        <label>title:</label>
+        <input type="text" name="title" placeholder={{book.title}}/><br>
+        <label>price:</label>
+        <input type="text" name="price" placeholder={{book.price}}/><br>
+       
+       
+        <button type="submit" ><i class="fa fa-search" aria-hidden="true"></i> edit</button>
+       </form>
+</body>
+</html>
+{% endblock %}
+
+

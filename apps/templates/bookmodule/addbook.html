@@ -1,0 +1,27 @@
+{% extends "layouts/base.html" %} 
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>add</title>
+</head>
+
+<body>
+    <h1>add book</h1>
+    
+    <form class="addForm" method="post" action="">
+        {% csrf_token %}
+        <label>title:</label>
+        <input type="text" name="title" placeholder="title"/><br>
+        <label>price:</label>
+        <input type="text" name="price" placeholder="price"/><br>
+       
+       
+        <button type="submit" ><i class="fa fa-search" aria-hidden="true"></i>add</button>
+       </form>
+</body>
+</html>
+{% endblock %}
+
+

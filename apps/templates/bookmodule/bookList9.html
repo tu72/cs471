@@ -1,0 +1,21 @@
+{% extends "layouts/base.html" %} 
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Books</title>
+</head>
+
+<body>
+    <h1>Book Collection</h1> <a href="http://127.0.0.1:8000/books/lab9_part1/addbook">add</a><br>
+    
+    {% for obj in books %}
+    ID: {{obj.id}}, Title: {{obj.title}}, price : {{obj.price}} <br> <a href="http://127.0.0.1:8000/books/lab9_part1/editbook/{{obj.id}}">edit </a> <br>
+    <a href="http://127.0.0.1:8000/books/lab9_part1/deletebook/{{obj.id}}"> delete</a>
+    <hr>
+    {% endfor %}
+
+</body>
+</html>
+{% endblock %}

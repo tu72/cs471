@@ -95,3 +95,39 @@ def task6(request):
 
     return render(request, 'bookmodule/task6.html', context)
 
+
+
+def listbooks(request):
+            books = Book.objects.all()
+            return render(request, 'bookmodule/bookList9.html', {'books':books})
+
+def editbook(request,bookId):
+    if request.method == "POST":
+        title = request.POST.get('title')
+        price = request.POST.get('price')
+        book = Book.objects.filter(id=bookId).get()
+        book.title=title
+        book.price=price
+        book.save()
+        books = Book.objects.all()
+        return render(request, 'bookmodule/bookList9.html', {'books':books})
+
+    book = Book.objects.filter(id=bookId).get()
+    return render(request, 'bookmodule/editbook.html', {'book':book})
+
+def deletebook(request,bookId):
+    Book.objects.filter(id=bookId).delete()
+    books = Book.objects.all()
+    return render(request, 'bookmodule/bookList9.html', {'books':books})
+
+def addbook(request):
+        if request.method == "POST":
+            title = request.POST.get('title')
+            price = request.POST.get('price')
+            book = Book(title=title, price=price)
+            book.save()
+            books = Book.objects.all()
+            return render(request, 'bookmodule/bookList9.html', {'books':books})
+
+        
+        return render(request, 'bookmodule/addbook.html')
