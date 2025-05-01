@@ -1,0 +1,21 @@
+{% extends "layouts/base.html" %} 
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>departments</title>
+</head>
+
+<body>
+    <h1>departments</h1>
+    
+
+    {% for obj in departments %}
+    department name: {{obj.name}}, number of students: {{obj.student_count}}, 
+    <hr>
+    {% endfor %}
+
+</body>
+</html>
+{% endblock %}

@@ -1,10 +1,16 @@
 from django.shortcuts import render
 from .models import Book
 from .models import student
+from .models import student2
 from .models import Address
+from .models import department
+from .models import card
+from .models import course
+
 from django.http import HttpResponse
 from django.db.models import Q
 from django.db.models import Count, Sum, Avg, Max, Min
+from django.db import transaction
 def index(request):
  return render(request, "bookmodule/index.html")
 def list_books(request):
@@ -131,3 +137,64 @@ def addbook(request):
 
         
         return render(request, 'bookmodule/addbook.html')
+
+
+
+
+def listbooks2(request):
+    # dictionary for initial data with 
+    # field names as keys
+    context ={}
+
+    # add the dictionary during initialization
+    context["Books"] = Book.objects.all()
+        
+    return render(request, "bookList9_2.html", context)
+
+def editbook2(request,bookId):
+    if request.method == "POST":
+        title = request.POST.get('title')
+        price = request.POST.get('price')
+        book = Book.objects.filter(id=bookId).get()
+        book.title=title
+        book.price=price
+        book.save()
+        books = Book.objects.all()
+        return render(request, 'bookmodule/bookList9_2.html', {'books':books})
+
+    book = Book.objects.filter(id=bookId).get()
+    return render(request, 'bookmodule/editbook_2.html', {'book':book})
+
+def deletebook2(request,bookId):
+    Book.objects.filter(id=bookId).delete()
+    books = Book.objects.all()
+    return render(request, 'bookmodule/bookList9_2.html', {'books':books})
+
+def addbook2(request):
+        if request.method == "POST":
+            title = request.POST.get('title')
+            price = request.POST.get('price')
+            book = Book(title=title, price=price)
+            book.save()
+            books = Book.objects.all()
+            return render(request, 'bookmodule/bookList9.html', {'books':books})
+
+        
+        return render(request, 'bookmodule/addbook.html')
+
+
+def lab9task1(request):
+        departments = department.objects.annotate(student_count=Count('student2'))
+        return render(request, 'bookmodule/lab9Updated/task1.html', {'departments':departments})
+
+def lab9task2(request):
+        courses = course.objects.annotate(student_count=Count('student2'))
+        return render(request, 'bookmodule/lab9Updated/task2.html', {'courses':courses})
+
+def lab9task3(request):
+        departments = department.objects.annotate(oldest_student_id=Min('student2__id'))
+        return render(request, 'bookmodule/lab9Updated/task3.html', {'departments':departments})
+
+def lab9task4(request):
+        departments = department.objects.annotate(student_count=Count('student2')).filter(student_count__gte=2).order_by('-student_count')
+        return render(request, 'bookmodule/lab9Updated/task4.html', {'departments':departments})

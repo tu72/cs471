@@ -1,0 +1,23 @@
+{% extends "layouts/base.html" %} 
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Books</title>
+</head>
+
+<body>
+    <div class="main">
+
+        {% for book in books %}
+        {{book.title}}<br>
+        {{book.author}}<br>
+        {{book.price}}<br>
+        {{book.edition}}<br>
+        <hr/>
+    </div>
+
+</body>
+</html>
+{% endblock %}

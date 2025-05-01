@@ -6,12 +6,32 @@ class Book(models.Model):
     edition = models.SmallIntegerField(default = 1)
 
 
-    
+
 class Address (models.Model):
     city = models.CharField(max_length = 50)
+
 
 class student(models.Model):
     name = models.CharField(max_length = 50)
     age = models.SmallIntegerField(default = 1)
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
+
+class card (models.Model):
+    card_number = models.SmallIntegerField(default = 1)
+
+class department (models.Model):
+    name = models.CharField(max_length = 50)
+
+class course (models.Model):
+    title = models.CharField(max_length = 50)
+    code = models.SmallIntegerField(default = 1)
+
+class student2(models.Model):
+    name = models.CharField(max_length = 50)
+    card = models.OneToOneField(card, on_delete = models.PROTECT)
+    department = models.ForeignKey(department,on_delete=models.CASCADE)
+    courses = models.ManyToManyField(course)
+
+
+
 

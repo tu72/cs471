@@ -18,9 +18,18 @@ urlpatterns = [
   path('lab8/task4', views.task4, name='task4'),
   path('lab8/task5', views.task5, name='task5'),
 path('lab8/task6', views.task6, name='task6'),
-path('lab9_part1/listbooks', views.listbooks, name='listbooks'),
-path('lab9_part1/editbook/<int:bookId>', views.editbook, name='editbook'),
-path('lab9_part1/deletebook/<int:bookId>', views.deletebook, name='deletebook'),
-path('lab9_part1/addbook', views.addbook, name='addbook'),
+path('lab10_part1/listbooks', views.listbooks, name='listbooks'),
+path('lab10_part1/editbook/<int:bookId>', views.editbook, name='editbook'),
+path('lab10_part1/deletebook/<int:bookId>', views.deletebook, name='deletebook'),
+path('lab10_part1/addbook', views.addbook, name='addbook'),
+path('lab10_part2/listbooks', views.listbooks2, name='listbooks2'),
+path('lab10_part2/editbook/<int:bookId>', views.editbook2, name='editbook2'),
+path('lab10_part2/deletebook/<int:bookId>', views.deletebook2, name='deletebook2'),
+path('lab10_part2/addbook', views.addbook2, name='addbook2'),
+
+path('lab9/task1', views.lab9task1, name='lab9task1'),
+path('lab9/task2', views.lab9task2, name='lab9task2'),
+path('lab9/task3', views.lab9task3, name='lab9task3'),
+path('lab9/task4', views.lab9task4, name='lab9task4'),
 ]
 

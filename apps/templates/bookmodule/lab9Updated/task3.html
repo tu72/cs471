@@ -1,0 +1,21 @@
+{% extends "layouts/base.html" %} 
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>departments</title>
+</head>
+
+<body>
+    <h1>names of oldest students</h1>
+    
+
+    {% for obj in departments %}
+    departments name: {{obj.name}}, oldest studnet: {{obj.oldest_student_id}}, 
+    <hr>
+    {% endfor %}
+
+</body>
+</html>
+{% endblock %}
