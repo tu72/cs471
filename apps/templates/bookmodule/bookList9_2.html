@@ -1,4 +1,4 @@
-{% extends "layouts/base.html" %} 
+{% extends "layouts/base.html" %}
 {% load static %}
 {% block content %}
 <!DOCTYPE html>
@@ -6,18 +6,20 @@
 <head>
     <title>Books</title>
 </head>
-
 <body>
+    <h1>Book List</h1>
+    <a href="/books/lab10_part2/addbook">Add New Book</a>
     <div class="main">
-
         {% for book in books %}
-        {{book.title}}<br>
-        {{book.author}}<br>
-        {{book.price}}<br>
-        {{book.edition}}<br>
-        <hr/>
+            Title: {{book.title}}<br>
+            {% if book.author %}Author: {{book.author}}<br>{% endif %}
+            Price: {{book.price}}<br>
+            {% if book.edition %}Edition: {{book.edition}}<br>{% endif %}
+            <a href="/books/lab10_part2/editbook/{{book.id}}">Edit</a>
+            <a href="/books/lab10_part2/deletebook/{{book.id}}">Delete</a>
+            <hr/>
+        {% endfor %}
     </div>
-
 </body>
 </html>
 {% endblock %}

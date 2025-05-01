@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Book
 from .models import student
 from .models import student2
@@ -6,7 +6,7 @@ from .models import Address
 from .models import department
 from .models import card
 from .models import course
-
+from .forms import BookForm
 from django.http import HttpResponse
 from django.db.models import Q
 from django.db.models import Count, Sum, Avg, Max, Min
@@ -102,7 +102,7 @@ def task6(request):
     return render(request, 'bookmodule/task6.html', context)
 
 
-
+#lab 10 part 1
 def listbooks(request):
             books = Book.objects.all()
             return render(request, 'bookmodule/bookList9.html', {'books':books})
@@ -140,49 +140,40 @@ def addbook(request):
 
 
 
-
+#lab 10 part 2
 def listbooks2(request):
-    # dictionary for initial data with 
-    # field names as keys
-    context ={}
-
-    # add the dictionary during initialization
-    context["Books"] = Book.objects.all()
-        
-    return render(request, "bookList9_2.html", context)
-
-def editbook2(request,bookId):
-    if request.method == "POST":
-        title = request.POST.get('title')
-        price = request.POST.get('price')
-        book = Book.objects.filter(id=bookId).get()
-        book.title=title
-        book.price=price
-        book.save()
-        books = Book.objects.all()
-        return render(request, 'bookmodule/bookList9_2.html', {'books':books})
-
-    book = Book.objects.filter(id=bookId).get()
-    return render(request, 'bookmodule/editbook_2.html', {'book':book})
-
-def deletebook2(request,bookId):
-    Book.objects.filter(id=bookId).delete()
-    books = Book.objects.all()
-    return render(request, 'bookmodule/bookList9_2.html', {'books':books})
+    context = {"books": Book.objects.all()}
+    return render(request, "bookmodule/bookList9_2.html", context)
 
 def addbook2(request):
-        if request.method == "POST":
-            title = request.POST.get('title')
-            price = request.POST.get('price')
-            book = Book(title=title, price=price)
-            book.save()
-            books = Book.objects.all()
-            return render(request, 'bookmodule/bookList9.html', {'books':books})
+    if request.method == "POST":
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/books/lab10_part2/listbooks')
+    else:
+        form = BookForm()
+    
+    return render(request, 'bookmodule/addbook_2.html', {'form': form})
 
-        
-        return render(request, 'bookmodule/addbook.html')
+def editbook2(request, bookId):
+    book = Book.objects.get(id=bookId)
+    
+    if request.method == "POST":
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('/books/lab10_part2/listbooks')
+    else:
+        form = BookForm(instance=book)
+    
+    return render(request, 'bookmodule/editbook_2.html', {'form': form, 'book': book})
 
+def deletebook2(request, bookId):
+    Book.objects.get(id=bookId).delete()
+    return redirect('/books/lab10_part2/listbooks')
 
+#lab 9
 def lab9task1(request):
         departments = department.objects.annotate(student_count=Count('student2'))
         return render(request, 'bookmodule/lab9Updated/task1.html', {'departments':departments})
